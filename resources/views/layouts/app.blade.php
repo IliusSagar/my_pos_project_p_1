@@ -22,11 +22,18 @@
         <!-- Custom Files -->
         <link href="{{ asset('public/admin/css/helper.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('public/admin/css/style.css') }}" rel="stylesheet" type="text/css" />
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet">
+
         <script src="{{ asset('public/admin/js/modernizr.min.js') }}"></script>
+
+        <!-- DataTables -->
+        <link href="{{ asset('public/admin/assets/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </head>
 <body class="fixed-left">
@@ -167,9 +174,10 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-mail"></i><span> Mail </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="#" class="waves-effect"><i class="fas fa-users"></i><span> Employees </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Inbox</a></li> 
+                                    <li><a href="{{ route('add.employee') }}">Add Employee</a></li> 
+                                    <li><a href="{{ route('all.employee') }}">All Employee</a></li>
                                 </ul>
                             </li>
 
@@ -202,9 +210,7 @@
         </main>
     </div>
 
-    <footer class="footer text-right">
-                    2021 © EAP SOFTWARE.
-                </footer>
+   
 
     <script>
             var resizefunc = [];
@@ -229,14 +235,14 @@
         <script src="{{ asset('public/admin/assets/sweet-alert/sweet-alert.init.js') }}"></script>
 
         <!-- flot Chart -->
-        <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.js') }}"></script>
+        {{-- <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.js') }}"></script>
         <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.time.js') }}"></script>
         <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.tooltip.min.js') }}"></script>
         <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.resize.js') }}"></script>
         <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.pie.js') }}"></script>
         <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.selection.js') }}"></script>
         <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.stack.js') }}"></script>
-        <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.crosshair.js') }}"></script>
+        <script src="{{ asset('public/admin/assets/flot-chart/jquery.flot.crosshair.js') }}"></script> --}}
 
         <!-- Counter-up -->
         <script src="{{ asset('public/admin/assets/counterup/waypoints.min.js') }}" type="text/javascript"></script>
@@ -249,10 +255,20 @@
         <script src="{{ asset('public/admin/js/jquery.dashboard.js') }}"></script>
 
         <!-- Chat -->
-        <script src="{{ asset('public/admin/js/jquery.chat.js') }}"></script>
+        {{-- <script src="{{ asset('public/admin/js/jquery.chat.js') }}"></script --}}>
 
         <!-- Todo -->
-        <script src="{{ asset('public/admin/js/jquery.todo.js') }}"></script>
+        {{-- <script src="{{ asset('public/admin/js/jquery.todo.js') }}"></script> --}}
+
+        <script src="{{ asset('public/admin/assets/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('public/admin/assets/datatables/dataTables.bootstrap.js') }}"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+            } );
+        </script>
 
         <script type="text/javascript">
             /* ==============================================
@@ -265,5 +281,52 @@
                 });
             });
         </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+        <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js') }}"></script>
+
+        <script>
+        @if(Session::has('messege'))
+            var type="{{Session::get('alert-type','info') }}"
+            switch(type){
+                case 'info':
+                    toastr.info("{{ Session::get('messege') }}");
+                    break;
+                case 'success':
+                    toastr.success("{{ Session::get('messege') }}");
+                    break;
+                case 'warning':
+                    toastr.warning("{{ Session::get('messege') }}");
+                    break;
+                case 'error':
+                    toastr.error("{{ Session::get('messege') }}");
+                    break;
+            }
+            @endif
+        </script>
+
+         <script>
+        $(document).on('click', "#delete", function(e){
+            e.preventDefault();
+            var link = $(this).attr("href");
+                swal({
+                  title: "Are you want to delete?",
+                  text: "Once Delete, This will be Permanently Delete!",
+                  icon: "warning",
+                  buttons: true,
+                  dagerMode: true,
+        })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = link;
+                    }else{
+                        swal("Safe Data!");
+                    }
+                });
+            });
+        
+    </script>
+
 </body>
 </html>
