@@ -23,63 +23,53 @@
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading"><h3 class="panel-title">Add Employee</h3></div>
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                                    <div class="panel-heading"><h3 class="panel-title">View Employee</h3></div>
                                     <div class="panel-body">
-                                        <form role="form" action="{{ url('/insert-employee') }}" method="post" enctype="multipart/form-data">
-                                        	@csrf
+                                        
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Name</label>
-                                                <input type="text" class="form-control" name="name" placeholder="Full Name" required>
+                                                <p>{{ $single->name }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Email</label>
-                                                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                                <p>{{ $single->email }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Phone</label>
-                                                <input type="text" class="form-control" name="phone" placeholder="phone" required>
+                                                <p>{{ $single->phone }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Address</label>
-                                                <input type="text" class="form-control" name="address" placeholder="address" required>
+                                                <p>{{ $single->address }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Experience</label>
-                                                <input type="text" class="form-control" name="experience" placeholder="experience" required>
+                                                <p>{{ $single->experience }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">NID NO.</label>
-                                                <input type="text" class="form-control" name="nid_no" placeholder="NID NO" required>
+                                                <p>{{ $single->nid_no }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Salary</label>
-                                                <input type="text" class="form-control" name="salary" placeholder="salary" required>
+                                                <p>{{ $single->salary }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Vacation</label>
-                                                <input type="text" class="form-control" name="vacation" placeholder="vacation" required>
+                                                <p>{{ $single->vacation }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">City</label>
-                                                <input type="text" class="form-control" name="city" placeholder="city" required>
+                                                <p>{{ $single->city }}</p>
                                             </div>
                                             <div class="form-group">
-                                            	<img id="image" src="#">
+                                            	<img style="height: 80px; width: 80px;" src="{{ URL::to($single->photo) }}">
                                                 <label for="exampleInputPassword1">Photo</label>
-                                                <input type="file" name="photo" accept="image/*" class="upload" required onchange="readURL(this);">
+                                                
                                             </div>
                                                                                         
-                                            <button type="submit" class="btn btn-purple waves-effect waves-light">Submit</button>
-                                        </form>
+                                           
+                                    
                                     </div><!-- panel-body -->
                                 </div> <!-- panel -->
                             </div> <!-- col-->
@@ -91,19 +81,6 @@
                 </div> <!-- content -->
          </div>
 
-         <script type="text/javascript">
-         	function readURL(input) {
-         		if (input.files && input.files[0]) {
-         			var reader = new FileReader();
-         			reader.onload = function (e) {
-         				$('#image')
-         					.attr('src', e.target.result)
-         					.width(80)
-         					.height(80);
-         			};
-         			reader.readAsDataURL(input.files[0]);
-         		}
-         	}
-         </script>
+         
 
 @endsection
