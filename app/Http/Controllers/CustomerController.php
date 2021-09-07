@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-Use App\Employee;
 
-class EmployeeController extends Controller
+class CustomerController extends Controller
 {
-   /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -18,27 +17,24 @@ class EmployeeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    //new customer form view
     public function index()
     {
-        return view('add_employee');
+        return view('add_customer');
     }
 
-//insert employee
-    public function store(Request $request)
+    public function Store(Request $request)
     {
+
         $validatedData = $request->validate([
         'name' => 'required|max:255',
-        'email' => 'required|unique:employees|max:255',
-        'nid_no' => 'required|unique:employees|max:255',
+        'email' => 'required|unique:customers|max:255',
+        'nid_no' => 'required|unique:customers|max:255',
         'address' => 'required',
         'phone' => 'required|max:13',
         'photo' => 'required',
-        'salary' => 'required',
+        'city' => 'required',
+
         ]);
 
         $data=array();
@@ -46,33 +42,33 @@ class EmployeeController extends Controller
         $data['email']=$request->email;
         $data['phone']=$request->phone;
         $data['address']=$request->address;
-        $data['experience']=$request->experience;
         $data['nid_no']=$request->nid_no;
-        $data['salary']=$request->salary;
-        $data['vacation']=$request->vacation;
+        $data['photo']=$request->photo;
         $data['city']=$request->city;
+        
+
         $image = $request->file('photo');
 
         if ($image) {
             $image_name= str_random(5);
             $ext=strtolower($image->getClientOriginalExtension());
             $image_full_name=$image_name.'.'.$ext;
-            $upload_path='public/employee/';
+            $upload_path='public/customer/';
             $image_url=$upload_path.$image_full_name;
             $success=$image->move($upload_path,$image_full_name);
 
             if ($success) {
 
                 $data['photo']=$image_url;
-                $employee=DB::table('employees')
+                $customer=DB::table('customers')
                         ->insert($data);
 
-            if ($employee) {
+            if ($customer) {
                 $notification=array(
-                'messege'=>'Successfully Employee Inserted',
+                'messege'=>'Successfully Customer Inserted',
                 'alert-type'=>'success'
                 );
-                return Redirect()->route('home')->with($notification);
+                return Redirect()->route('all.customer')->with($notification);
             }else{
                 $notification=array(
                     'messege'=>'error',
@@ -88,44 +84,44 @@ class EmployeeController extends Controller
             return Redirect()->back();
             
             }
-        }
+        
+        
+    }
 
-//all employees return
-        public function AllEmployee()
-        {
-            $employees=Employee::all();
-            return view('all_employee', compact('employees'));
-        }
+    public function AllCustomer()
+    {
+        $customer=DB::table('customers')->get();
+        return view('all_customer')->with('customer',$customer);
+    }   
 
-//view a single employee
-        public function ViewEmployee($id)
+    //view a single customer
+        public function ViewCustomer($id)
         {
-            $single=DB::table('employees')
+            $single=DB::table('customers')
                     ->where('id',$id)
                     ->first();
 
-            return view('view_employee', compact('single'));           
+            return view('view_customer', compact('single'));           
         }
 
-
-//delete a single employee
-        public function DeleteEmployee($id)
+    //delete a single customer
+        public function DeleteCustomer($id)
         {
-            $delete=DB::table('employees')
+            $delete=DB::table('customers')
                     ->where('id',$id)
                     ->first();
             $photo=$delete->photo;
             unlink($photo);
-            $dltuser=DB::table('employees')
+            $dltuser=DB::table('customers')
                     ->where('id',$id)
                     ->delete();
 
              if ($dltuser) {
                 $notification=array(
-                'messege'=>'Successfully Employee Deleted',
+                'messege'=>'Successfully Customer Deleted',
                 'alert-type'=>'success'
                 );
-                return Redirect()->route('all.employee')->with($notification);
+                return Redirect()->route('all.customer')->with($notification);
             }else{
                 $notification=array(
                     'messege'=>'error',
@@ -134,38 +130,21 @@ class EmployeeController extends Controller
                 return Redirect()->back()->with($notification);
             }      
         }
-//single employee data show for edit
-        public function EditEmployee($id)
-        {
-            $edit=DB::table('employees')
-                    ->where('id',$id)
-                    ->first();
 
-            return view('edit_employee', compact('edit'));
+        public function EditCustomer($id)
+        {
+            $cus=DB::table('customers')->where('id',$id)->first();
+            return view('edit_customer', compact('cus'));
         }
 
-//update a single employee
-        public function UpdateEmployee(Request $request,$id)
+        public function UpdateCustomer(Request $request,$id)
         {
-            $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'nid_no' => 'required|max:255',
-            'address' => 'required',
-            'phone' => 'required|max:13',
-            'salary' => 'required',
-            ]);
-
-
             $data=array();
             $data['name']=$request->name;
             $data['email']=$request->email;
             $data['phone']=$request->phone;
             $data['address']=$request->address;
-            $data['experience']=$request->experience;
             $data['nid_no']=$request->nid_no;
-            $data['salary']=$request->salary;
-            $data['vacation']=$request->vacation;
             $data['city']=$request->city;
             $image=$request->photo;
 
@@ -173,24 +152,24 @@ class EmployeeController extends Controller
             $image_name= str_random(20);
             $ext=strtolower($image->getClientOriginalExtension());
             $image_full_name=$image_name.'.'.$ext;
-            $upload_path='public/employee/';
+            $upload_path='public/customer/';
             $image_url=$upload_path.$image_full_name;
             $success=$image->move($upload_path,$image_full_name);
 
             if ($success) {
 
                 $data['photo']=$image_url;
-                $img=DB::table('employees')->where('id',$id)->first();
+                $img=DB::table('customers')->where('id',$id)->first();
                 $image_path = $img->photo;
                 $done=unlink($image_path);
-                $user=DB::table('employees')->where('id',$id)->update($data);
+                $user=DB::table('customers')->where('id',$id)->update($data);
 
             if ($user) {
                 $notification=array(
-                'messege'=>'Employee Update Successfully',
+                'messege'=>'Customer Update Successfully',
                 'alert-type'=>'success'
                 );
-                return Redirect()->route('all.employee')->with($notification);
+                return Redirect()->route('all.customer')->with($notification);
 
             }else{
                 return Redirect()->back();
@@ -198,27 +177,26 @@ class EmployeeController extends Controller
            }
                 
             }else{
-                $oldphoto=$request->old_photo;
+              $oldphoto=$request->old_photo;
             if ($oldphoto) {
 
                 $data['photo']=$oldphoto;
                 
-                $user=DB::table('employees')->where('id',$id)->update($data);
+                $user=DB::table('customers')->where('id',$id)->update($data);
 
             if ($user) {
                 $notification=array(
-                'messege'=>'Employee Update Successfully',
+                'messege'=>'Customer Update Successfully',
                 'alert-type'=>'success'
                 );
-                return Redirect()->route('all.employee')->with($notification);
+                return Redirect()->route('all.customer')->with($notification);
 
             }else{
                 return Redirect()->back();
                }
            }
+
+
             }
-
         }
-};
-
- 
+}

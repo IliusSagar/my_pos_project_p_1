@@ -24,6 +24,7 @@
                             <div class="col-md-8">
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><h3 class="panel-title">Add Employee</h3></div>
+                                    
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
@@ -33,6 +34,7 @@
                                             </ul>
                                         </div>
                                     @endif
+
                                     <div class="panel-body">
                                         <form role="form" action="{{ url('/insert-employee') }}" method="post" enctype="multipart/form-data">
                                         	@csrf

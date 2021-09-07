@@ -179,17 +179,21 @@
                                     <li><a href="{{ route('add.employee') }}">Add Employee</a></li> 
                                     <li><a href="{{ route('all.employee') }}">All Employee</a></li>
                                 </ul>
-                            </li>
+                            </li>                  
 
-                            <li>
-                                <a href="#" class="waves-effect"><i class="md md-event"></i><span> Calendar </span></a>
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i> <span> Customer </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('add.customer') }}">Add Customers</a></li>
+                                    <li><a href="{{ route('all.customer') }}">All Customers</a></li>
+                                </ul>
                             </li>
 
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-palette"></i> <span> Elements </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i> <span> Supplier </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="">Typography</a></li>
-                                    
+                                    <li><a href="{{ route('add.supplier') }}">Add Supplier</a></li>
+                                    <li><a href="{{ route('all.supplier') }}">All Supplier</a></li>
                                 </ul>
                             </li>
 
