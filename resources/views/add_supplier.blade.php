@@ -58,8 +58,7 @@
                                                		<option disabled="" selected=""></option>
                                                		<option value="Distributor">Distributor</option>
                                                		<option value="Wholeseller">Wholeseller</option>
-                                               		<option value="Retailer">Retailer</option>
-                                               		
+                                               		<option value="Retailer">Retailer</option>	
                                                	</select>
                                             </div>
                                             <div class="form-group">

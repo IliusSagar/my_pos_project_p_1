@@ -37,3 +37,7 @@ Route::get('/delete-supplier/{id}', 'SupplierController@DeleteSupplier');
 Route::get('/edit-supplier/{id}', 'SupplierController@EditSupplier');
 Route::post('/update-supplier/{id}','SupplierController@UpdateSupplier');
 
+//salary routes start from here---------------
+Route::get('/add-advanced-salary', 'SalaryController@AddAdvancedSalary')->name('add.salary');
+Route::post('/insert-advancedsalary','SalaryController@InsertAdvanced');
+Route::get('/all-salary', 'SalaryController@AllSalary')->name('all.salary');
