@@ -1,1 +1,0 @@
-all_salary.blade.php
