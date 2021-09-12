@@ -23,7 +23,7 @@
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <div class="panel panel-info">
-                                    <div class="panel-heading"><h3 class="panel-title text-white">advanced Salary Provide</h3>
+                                    <div class="panel-heading"><h3 class="panel-title text-white">Advanced Salary Provide</h3>
 
                                     </div>
 
