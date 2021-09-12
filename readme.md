@@ -1,3 +1,8 @@
+![screencapture-localhost-my-pos-project-login-2021-09-09-04_50_24](https://user-images.githubusercontent.com/89338796/132680802-9aaeaac2-8984-43f2-90e9-11f83eb53a42.png)
+![screencapture-localhost-my-pos-project-home-2021-09-09-04_49_53](https://user-images.githubusercontent.com/89338796/132680822-1017c56b-2ca5-42fc-8e3d-617530e02290.png)
+![screencapture-localhost-my-pos-project-all-customer-2021-09-09-04_50_10](https://user-images.githubusercontent.com/89338796/132680844-423802d1-5c45-4cc0-9f6f-90ef8497d4ef.png)
+![screencapture-localhost-my-pos-project-add-supplier-2021-09-09-04_49_38](https://user-images.githubusercontent.com/89338796/132680859-7f216814-40ad-4954-b5ec-87d251a18909.png)
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
