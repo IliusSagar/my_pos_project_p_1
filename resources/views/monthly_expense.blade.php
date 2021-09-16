@@ -50,6 +50,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Details</th>
+                                                            <th>Date</th>
                                                             <th>Amount</th>
                                                             
                                                         </tr>
@@ -59,7 +60,8 @@
                                                     <tbody>
                                                         @foreach($expense as $row)
                                                         <tr>
-                                                            <td>{{ $row->details }}</td>      
+                                                            <td>{{ $row->details }}</td>  
+                                                            <td>{{ $row->date }}</td>      
                                                             <td>{{ $row->amount }}</td>
                                                             
                                                         </tr>

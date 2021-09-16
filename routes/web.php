@@ -81,3 +81,16 @@ Route::get('/september-expense','ExpenseController@SeptemberExpense')->name('sep
 Route::get('/october-expense','ExpenseController@OctoberExpense')->name('october.expense');
 Route::get('/november-expense','ExpenseController@NovemberExpense')->name('november.expense');
 Route::get('/december-expense','ExpenseController@DecemberExpense')->name('december.expense');
+
+//Attendence routes are here-----------
+Route::get('/take-attendence','AttendenceController@TakeAttendence')->name('take.attendence');
+Route::post('/insert-attendence','AttendenceController@InsertAttendence');
+Route::get('/all-attendence','AttendenceController@AllAttendence')->name('all.attendence');
+Route::get('/edit-attendence/{edit_date}', 'AttendenceController@EditAttendence');
+Route::post('/update-attendence','AttendenceController@UpdateAttendence');
+Route::get('/view-attendence/{edit_date}', 'AttendenceController@ViewAttendence');
+
+
+//setting routes
+Route::get('/website-setting','AttendenceController@Setting')->name('setting');
+Route::post('/update-website/{id}', 'AttendenceController@UpdateWebsite');
