@@ -224,6 +224,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('add.product') }}">Add Product</a></li>
                                     <li><a href="{{ route('all.product') }}">All Product</a></li>
+                                    <a href="{{ route('import.product') }}">Import Product</a></li>
                                 </ul>
                             </li>
 

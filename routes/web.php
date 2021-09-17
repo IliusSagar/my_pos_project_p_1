@@ -59,6 +59,11 @@ Route::get('/view-product/{id}','ProductController@ViewProduct');
 Route::get('/edit-product/{id}', 'ProductController@EditProduct');
 Route::post('/update-product/{id}','ProductController@UpdateProduct');
 
+//excel export and import
+Route::get('/import-product','ProductController@ImportProduct')->name('import.product');
+Route::get('/export','ProductController@export')->name('export');
+Route::post('/import','ProductController@import')->name('import');
+
 
 //Expense routes are here------------------------
 Route::get('/add-expense','ExpenseController@AddExpense')->name('add.expense');
